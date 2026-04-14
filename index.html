@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aurisIQ — Inteligencia para ventas presenciales en español</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cyan:#00C2E0;--cyan2:#33CFEA;--navy:#060B18;--green:#10B981;--red:#EF4444;--yellow:#F59E0B;--terracota:#c87840;
+  --g50:#F9FAFB;--g100:#F3F4F6;--g200:#E5E7EB;--g400:#9CA3AF;--g600:#4B5563;--g900:#111827;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--g900);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200)}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo-mark{font-family:'Inter',sans-serif;font-size:20px;font-weight:900;letter-spacing:-.04em;color:var(--cyan)}
+.logo-mark span{color:var(--navy)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--g600);font-size:14px;text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--g900)}
+.nav-cta{background:var(--cyan);border:none;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s,transform .15s}
+.nav-cta:hover{background:var(--cyan2);transform:translateY(-1px)}
+.hero{padding:140px 24px 80px;text-align:center;max-width:860px;margin:0 auto}
+.hero-h1{font-family:'Inter',sans-serif;font-size:clamp(40px,6.5vw,76px);line-height:.98;letter-spacing:-.04em;font-weight:900;color:var(--navy);margin-bottom:16px}
+.hero-h1 .accent{color:var(--cyan)}
+.hero-sub{font-family:'Inter',sans-serif;font-size:clamp(18px,2.5vw,24px);line-height:1.35;letter-spacing:-.02em;font-weight:600;color:var(--g600);margin-bottom:28px}
+.hero-desc{font-size:17px;color:var(--g600);line-height:1.7;max-width:580px;margin:0 auto 48px;font-weight:400}
+.hero-actions{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:60px}
+.btn-primary{background:var(--cyan);color:#fff;padding:15px 32px;border-radius:9px;font-family:'Inter',sans-serif;font-weight:700;font-size:16px;text-decoration:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(0,194,224,.28);transition:background .2s,transform .15s,box-shadow .2s}
+.btn-primary:hover{background:var(--cyan2);transform:translateY(-2px);box-shadow:0 6px 28px rgba(0,194,224,.38)}
+.btn-ghost{color:var(--g600);font-size:15px;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:color .2s;border:1px solid var(--g200);padding:14px 24px;border-radius:9px}
+.btn-ghost:hover{color:var(--g900);border-color:var(--g400)}
+.hero-stats{display:flex;gap:48px;justify-content:center;padding-top:32px;border-top:1px solid var(--g200);flex-wrap:wrap}
+.hs-num{font-family:'Inter',sans-serif;font-size:28px;font-weight:900;color:var(--navy);letter-spacing:-.03em;line-height:1}
+.hs-num em{color:var(--cyan);font-style:normal}
+.hs-label{font-size:12px;color:var(--g400);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;width:fit-content;margin-bottom:20px}
+.pill-cyan{background:rgba(0,194,224,.08);border:1px solid rgba(0,194,224,.22);color:var(--cyan)}
+.pill-white{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.85)}
+.pill-emoji{font-size:12px;line-height:1}
+.flow-section{background:var(--navy);padding:80px 24px}
+.flow-inner{max-width:680px;margin:0 auto}
+.flow-eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(0,194,224,.8);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;text-align:center;font-weight:700}
+.flow-title{font-family:'Inter',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-.03em;color:#fff;text-align:center;margin-bottom:16px}
+.flow-title span{color:var(--cyan)}
+.flow-subtitle{font-size:15px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:48px;line-height:1.6;max-width:520px;margin-left:auto;margin-right:auto}
+.flow-steps{display:flex;flex-direction:column;gap:0}
+.hf-step{background:var(--navy);border:1px solid rgba(0,194,224,.15);border-radius:12px;overflow:hidden}
+.hf-step-header{background:rgba(6,11,24,.6);border-bottom:1px solid rgba(255,255,255,.07);padding:10px 18px;display:flex;align-items:center;justify-content:space-between}
+.hf-step-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.hf-step-num{font-family:'Inter',sans-serif;font-size:11px;font-weight:800;background:var(--cyan);color:var(--navy);width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hf-status{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;display:flex;align-items:center;gap:5px}
+.hf-dot{width:5px;height:5px;border-radius:50%}
+.hf-step-body{padding:16px 18px;background:var(--navy)}
+.tl-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+.tl-speaker{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);letter-spacing:.08em;white-space:nowrap;min-width:64px;padding-top:2px}
+.tl-text{font-size:12px;color:rgba(255,255,255,.65);line-height:1.55}
+.tl-cursor{display:inline-block;width:5px;height:10px;background:var(--cyan);margin-left:2px;animation:blink .75s infinite;vertical-align:middle;border-radius:1px}
+@keyframes blink{0%,100%{opacity:.8}50%{opacity:0}}
+.hf-arrow{display:flex;align-items:center;justify-content:center;height:28px;position:relative}
+.hf-arrow::before{content:'';display:block;width:1px;height:100%;background:linear-gradient(180deg,rgba(0,194,224,.15),rgba(0,194,224,.4),rgba(0,194,224,.15))}
+.hf-arrow-icon{position:absolute;background:#fff;padding:2px 12px;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);letter-spacing:.12em;border:1px solid rgba(0,194,224,.2);border-radius:100px}
+.ai-proc-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ai-proc-icon{width:22px;height:22px;border-radius:6px;background:rgba(0,194,224,.08);border:1px solid rgba(0,194,224,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
+.ai-proc-text{font-size:12px;color:rgba(255,255,255,.6)}
+.ai-proc-bar-wrap{flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.ai-proc-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--cyan2));animation:procbar 2.4s ease-in-out infinite}
+@keyframes procbar{0%{width:0%;margin-left:0}60%{width:90%;margin-left:0}100%{width:0%;margin-left:100%}}
+.ai-proc-tag{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);letter-spacing:.1em;background:rgba(0,194,224,.08);border:1px solid rgba(0,194,224,.2);padding:2px 7px;border-radius:100px;white-space:nowrap}
+.result-score-row{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.mini-ring{position:relative;width:52px;height:52px;flex-shrink:0}
+.mini-ring svg{transform:rotate(-90deg)}
+.mini-ring-bg{stroke:rgba(255,255,255,.08);fill:none;stroke-width:5}
+.mini-ring-fill{stroke:var(--cyan);fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:146;stroke-dashoffset:36}
+.mini-score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:14px;font-weight:800;color:var(--cyan)}
+.rmt-name{font-size:13px;font-weight:600;color:#fff}
+.rmt-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);border:1px solid rgba(0,194,224,.3);background:rgba(0,194,224,.07);padding:2px 7px;border-radius:100px;letter-spacing:.08em;margin-top:2px}
+.rmt-empresa{font-size:10px;color:rgba(255,255,255,.35);margin-top:2px}
+.rc-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.rc-name{font-size:10px;color:rgba(255,255,255,.5);flex:1}
+.rc-pts{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);min-width:36px;text-align:right}
+.rc-bar{width:80px;height:3px;background:rgba(255,255,255,.08);border-radius:1px;overflow:hidden}
+.rc-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--cyan),var(--cyan2))}
+.result-next{background:rgba(0,194,224,.06);border:1px solid rgba(0,194,224,.14);border-radius:8px;padding:10px 14px;margin-top:10px}
+.rn-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.rn-text{font-size:11px;color:rgba(255,255,255,.55);line-height:1.55}
+.ticker-wrap{border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);padding:14px 0;overflow:hidden;background:var(--g50)}
+.ticker{display:flex;white-space:nowrap;animation:ticker 28s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:12px;padding:0 40px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--g400);letter-spacing:.12em;text-transform:uppercase}
+.ticker-item strong{color:var(--g900);font-weight:700}
+.ticker-item em{color:var(--cyan);font-style:normal;font-weight:700}
+.ticker-sep{color:var(--g200);margin:0 8px}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+section{padding:96px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'//';color:var(--g400)}
+.section-h2{font-family:'Inter',sans-serif;font-size:clamp(30px,4vw,50px);letter-spacing:-.03em;line-height:.97;font-weight:900;color:var(--navy);margin-bottom:20px}
+.section-h2 .accent{color:var(--cyan)}
+.section-desc{font-size:16px;color:var(--g600);max-width:520px;line-height:1.7}
+
+/* INGESTA - nuevo bloque grabación */
+.ingesta-section{background:#fff;padding:72px 24px;border-bottom:1px solid var(--g200)}
+.ingesta-inner{max-width:1000px;margin:0 auto}
+.ingesta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:32px}
+.ingesta-card{background:var(--g50);border:1px solid var(--g200);border-radius:14px;padding:26px 22px;text-align:left;position:relative}
+.ingesta-card.primary{background:var(--navy);border-color:var(--navy)}
+.ingesta-card.primary .ing-title,.ingesta-card.primary .ing-desc{color:#fff}
+.ingesta-card.primary .ing-desc{color:rgba(255,255,255,.65)}
+.ing-icon-wrap{width:40px;height:40px;border-radius:10px;background:rgba(0,194,224,.08);border:1px solid rgba(0,194,224,.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.ingesta-card.primary .ing-icon-wrap{background:rgba(0,194,224,.15);border-color:rgba(0,194,224,.35)}
+.ing-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.ing-title{font-family:'Inter',sans-serif;font-size:17px;font-weight:800;color:var(--navy);line-height:1.2;letter-spacing:-.02em;margin-bottom:8px}
+.ing-desc{font-size:13px;color:var(--g600);line-height:1.6}
+.ing-badge-primary{position:absolute;top:12px;right:12px;font-family:'JetBrains Mono',monospace;font-size:8px;background:var(--cyan);color:var(--navy);padding:3px 8px;border-radius:100px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+
+.benefits-intro{text-align:center;max-width:720px;margin:0 auto 72px}
+.benefits-big{font-family:'Inter',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-.03em;line-height:1.05;color:var(--navy);margin-bottom:16px}
+.benefits-big .accent{color:var(--cyan)}
+.benefits-sub{font-size:17px;color:var(--g600);line-height:1.7}
+.benefits-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;max-width:860px;margin-left:auto;margin-right:auto}
+.benefit-col{background:#fff;border:1px solid var(--g200);border-radius:14px;overflow:hidden}
+.benefit-col-header{padding:18px 22px;border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:10px}
+.benefit-col-title{font-family:'Inter',sans-serif;font-size:14px;font-weight:700;color:var(--navy)}
+.benefit-col-sub{font-size:11px;color:var(--g400);font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.benefit-list{padding:8px 0}
+.benefit-item{display:flex;gap:12px;align-items:flex-start;padding:12px 22px;border-bottom:1px solid var(--g100)}
+.benefit-item:last-child{border-bottom:none}
+.benefit-check{color:var(--cyan);flex-shrink:0;font-size:14px;margin-top:1px;font-weight:700}
+.benefit-text{font-size:13px;color:var(--g600);line-height:1.5}
+.benefit-text strong{color:var(--navy);font-weight:600}
+
+/* PROOF card - ajustada sin frase defensiva */
+.proof-card{max-width:860px;margin:0 auto 24px;background:#fff;border:1px solid var(--g200);border-radius:14px;padding:36px 40px;display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:start}
+.proof-left-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:14px}
+.proof-left-h{font-family:'Inter',sans-serif;font-size:20px;font-weight:800;color:var(--navy);line-height:1.3;letter-spacing:-.02em}
+.proof-right-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--g400);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:14px}
+.proof-list{display:flex;flex-direction:column;gap:10px}
+.proof-item{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;background:var(--g50);border:1px solid var(--g200);border-radius:10px}
+.proof-item-icon{width:22px;height:22px;border-radius:6px;background:rgba(0,194,224,.08);border:1px solid rgba(0,194,224,.2);color:var(--cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;margin-top:1px}
+.proof-item-text{font-size:13px;color:var(--g900);line-height:1.55}
+.proof-item-text strong{color:var(--navy);font-weight:600}
+
+/* SCREENSHOTS - bloque nuevo con tabs por rol */
+.screenshots-section{background:var(--g50);padding:96px 24px}
+.screenshots-inner{max-width:1100px;margin:0 auto}
+.screenshots-head{text-align:center;margin-bottom:32px}
+.role-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+.role-tab{background:#fff;border:1px solid var(--g200);color:var(--g600);padding:10px 20px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:.2s}
+.role-tab:hover{border-color:var(--g400);color:var(--g900)}
+.role-tab.active{background:var(--cyan);border-color:var(--cyan);color:#fff;box-shadow:0 4px 16px rgba(0,194,224,.25)}
+.screenshot-frame{background:#fff;border:1px solid var(--g200);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(6,11,24,.08)}
+.browser-bar{background:#f0eee8;padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--g200)}
+.browser-dots{display:flex;gap:5px}
+.browser-dot{width:10px;height:10px;border-radius:50%}
+.browser-dot.r{background:#ff5f57}.browser-dot.y{background:#febc2e}.browser-dot.g{background:#28c840}
+.browser-url{flex:1;background:#fff;border:1px solid var(--g200);border-radius:5px;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--g400);text-align:center}
+.app-body{display:flex;min-height:480px}
+.app-sidebar{width:180px;background:var(--navy);padding:18px 14px;flex-shrink:0;display:flex;flex-direction:column;gap:2px}
+.app-brand{font-family:'Inter',sans-serif;font-size:13px;font-weight:900;letter-spacing:-.03em;color:var(--cyan);margin-bottom:18px;padding:4px 8px}
+.app-brand span{color:#fff}
+.app-nav-item{padding:7px 10px;font-size:11.5px;color:rgba(255,255,255,.55);border-radius:5px;display:flex;align-items:center;gap:7px;font-weight:500}
+.app-nav-item.active{background:rgba(0,194,224,.12);color:var(--cyan)}
+.app-nav-item.cap-active{background:rgba(200,120,64,.12);color:var(--terracota)}
+.app-content{flex:1;padding:22px 26px;background:#fff}
+.app-greet{font-family:'Inter',sans-serif;font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:3px}
+.app-date{font-size:11px;color:var(--g400);margin-bottom:16px}
+.app-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.app-kpi{background:#fff;border:1px solid var(--g200);border-radius:8px;padding:11px 13px}
+.app-kpi.dark{background:var(--navy);border-color:var(--navy)}
+.app-kpi-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--g400);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px;font-weight:700}
+.app-kpi.dark .app-kpi-label{color:var(--cyan)}
+.app-kpi-val{font-family:'Inter',sans-serif;font-size:19px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.app-kpi.dark .app-kpi-val{color:#fff}
+.focus-card{background:#eafaff;border:1px solid rgba(0,194,224,.25);border-radius:7px;padding:9px 12px;margin-bottom:14px}
+.focus-card-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+.focus-card-text{font-size:11.5px;color:var(--navy);line-height:1.45;font-weight:500}
+.app-section-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--g400);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.call-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--g200);border-radius:8px;margin-bottom:6px}
+.call-score{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;font-family:'Inter',sans-serif}
+.call-score.good{background:#ddfbea;color:#047857}
+.call-score.mid{background:#fff4cc;color:#92400e}
+.call-info{flex:1;min-width:0}
+.call-name{font-size:12px;color:var(--navy);font-weight:600;line-height:1.3}
+.call-time{font-size:10px;color:var(--g400);margin-top:1px}
+.call-badge{font-family:'Inter',sans-serif;font-size:9px;padding:3px 8px;border-radius:100px;font-weight:600}
+.call-badge.ok{background:#ddfbea;color:#047857}
+.call-badge.warn{background:#fed7aa;color:#9a3412}
+.record-cta{margin-top:12px;background:var(--terracota);color:#fff;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;border:none;font-family:'Inter',sans-serif}
+/* Gerente */
+.team-semaforo{display:flex;flex-direction:column;gap:6px}
+.team-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--g200);border-radius:8px;background:#fff}
+.team-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.team-dot.red{background:var(--red)}.team-dot.yellow{background:var(--yellow)}.team-dot.green{background:var(--green)}
+.team-name{font-size:12px;color:var(--navy);font-weight:600;flex:1}
+.team-meta{font-size:10px;color:var(--g400);font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+.team-delta{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700}
+.team-delta.up{color:var(--green)}.team-delta.down{color:var(--red)}
+.obj-block{background:var(--g50);border:1px solid var(--g200);border-radius:8px;padding:12px 14px;margin-top:12px}
+.obj-title{font-size:11px;color:var(--navy);font-weight:700;margin-bottom:8px;font-family:'Inter',sans-serif}
+.obj-item{display:flex;justify-content:space-between;font-size:11px;color:var(--g600);padding:4px 0;border-bottom:1px solid var(--g200)}
+.obj-item:last-child{border:none}
+/* Dirección */
+.funnel-card{background:var(--navy);border-radius:10px;padding:18px;color:#fff;margin-bottom:14px}
+.funnel-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;font-weight:700}
+.funnel-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:12px}
+.funnel-row:last-child{border:none}
+.funnel-stage{color:rgba(255,255,255,.75)}
+.funnel-pct{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--cyan)}
+.roi-card{background:linear-gradient(135deg,var(--cyan) 0%,var(--cyan2) 100%);border-radius:10px;padding:18px;color:#fff}
+.roi-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.9;margin-bottom:4px}
+.roi-num{font-family:'Inter',sans-serif;font-size:30px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.roi-sub{font-size:11px;opacity:.85;margin-top:4px}
+.mock-note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--g400);letter-spacing:.1em;text-transform:uppercase;margin-top:18px}
+
+/* CHECKLIST futuro - simplificado */
+.checklist-card{background:var(--navy);border-radius:14px;padding:32px 36px;margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;max-width:960px;margin-left:auto;margin-right:auto}
+.soon-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:#F59E0B;padding:5px 12px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px;width:fit-content}
+.checklist-h{font-family:'Inter',sans-serif;font-size:clamp(18px,2vw,22px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:10px;line-height:1.2}
+.checklist-h span{color:var(--cyan)}
+.checklist-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
+.checklist-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:rgba(0,194,224,.6);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.checklist-demo{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px}
+.checklist-demo-header{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(0,194,224,.5);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.checklist-demo-header::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.checklist-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;margin-bottom:3px}
+.checklist-row.done{background:rgba(16,185,129,.08)}
+.checklist-row.pending{background:rgba(255,255,255,.03)}
+.checklist-row.detecting{background:rgba(0,194,224,.06);animation:fadeRow 1.5s ease-in-out infinite}
+@keyframes fadeRow{0%,100%{opacity:.7}50%{opacity:1}}
+.cr-check{width:16px;height:16px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;font-weight:700}
+.cr-check.done{background:var(--green);color:#fff}
+.cr-check.pending{border:1.5px solid rgba(255,255,255,.2);color:transparent}
+.cr-check.detecting{border:1.5px solid var(--cyan)}
+.cr-label{font-size:11px;color:rgba(255,255,255,.75);flex:1}
+.cr-label.done{color:rgba(255,255,255,.45);text-decoration:line-through}
+.cr-badge{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;border-radius:100px;letter-spacing:.08em}
+.cr-badge.auto{background:rgba(0,194,224,.12);color:var(--cyan);border:1px solid rgba(0,194,224,.2)}
+.cr-badge.live{background:rgba(245,158,11,.15);color:var(--yellow);border:1px solid rgba(245,158,11,.2)}
+
+.objeciones-card{background:var(--g50);border:1px solid var(--g200);border-radius:14px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.objeciones-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(253,230,138,.12);border:1px solid rgba(245,158,11,.25);color:#F59E0B;padding:6px 14px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px;width:fit-content}
+.objeciones-h{font-family:'Inter',sans-serif;font-size:clamp(22px,2.5vw,30px);font-weight:900;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px;line-height:1.1}
+.objeciones-h span{color:var(--cyan)}
+.objeciones-desc{font-size:14px;color:var(--g600);line-height:1.7}
+.obj-demo{background:#fff;border:1px solid var(--g200);border-radius:10px;padding:16px}
+.obj-demo-header{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.obj-bar-row{margin-bottom:10px}
+.obj-bar-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.obj-bar-text{font-size:12px;color:var(--g600)}
+.obj-bar-pct{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--navy)}
+.obj-bar-track{height:6px;background:var(--g200);border-radius:3px;overflow:hidden}
+.obj-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--cyan2))}
+.obj-insight{margin-top:14px;padding:10px 12px;background:rgba(0,194,224,.05);border:1px solid rgba(0,194,224,.15);border-radius:7px}
+.obj-insight-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.obj-insight-text{font-size:11px;color:var(--g600);line-height:1.5}
+.how-subtitle{font-size:16px;color:var(--g600);line-height:1.7;max-width:560px;margin-bottom:8px}
+.steps-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g200);border:1px solid var(--g200);border-radius:14px;overflow:hidden;margin-top:60px}
+.step{background:#fff;padding:32px 28px;position:relative;transition:background .2s}
+.step:hover{background:var(--g50)}
+.step-num{font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:rgba(0,194,224,.1);line-height:1;margin-bottom:20px;letter-spacing:-.04em}
+.step-icon{width:44px;height:44px;border-radius:10px;background:rgba(0,194,224,.06);border:1px solid rgba(0,194,224,.12);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.step-desc{font-size:12px;color:var(--g600);line-height:1.6}
+.step-connector{position:absolute;top:50%;right:-5px;width:10px;height:10px;background:var(--cyan);border-radius:50%;transform:translateY(-50%);z-index:2;box-shadow:0 0 10px rgba(0,194,224,.5)}
+.step:last-child .step-connector{display:none}
+.pricing{background:#fff}
+.pricing-inner{max-width:900px;margin:0 auto;text-align:center}
+.pricing-hero{background:var(--navy);border-radius:14px;padding:48px 40px;margin-top:48px;margin-bottom:32px;position:relative;overflow:hidden}
+.pricing-hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,194,224,.08) 0%,transparent 70%);pointer-events:none}
+.pricing-hero-pill{margin:0 auto 20px}
+.pricing-hero-h{font-family:'Inter',sans-serif;font-size:clamp(26px,3.5vw,40px);font-weight:900;color:#fff;letter-spacing:-.03em;line-height:1.05;margin-bottom:14px;position:relative;z-index:2}
+.pricing-hero-h .accent{color:var(--cyan)}
+.pricing-hero-sub{font-size:16px;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 36px;line-height:1.7;position:relative;z-index:2}
+.pricing-features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px;position:relative;z-index:2}
+.pf-col{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:22px 18px;text-align:left}
+.pf-col-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cyan);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;font-weight:700}
+.pf-col-title{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.3}
+.pf-col-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6}
+.pricing-hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--cyan);color:#fff;padding:15px 32px;border-radius:9px;font-family:'Inter',sans-serif;font-weight:700;font-size:15px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,194,224,.3);transition:.2s;position:relative;z-index:2}
+.pricing-hero-cta:hover{background:var(--cyan2);transform:translateY(-2px)}
+.pricing-note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--g400);letter-spacing:.1em;text-transform:uppercase;margin-top:18px}
+.verticales-line{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:36px;padding-top:28px;border-top:1px solid var(--g200)}
+.verticales-line-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--g400);letter-spacing:.14em;text-transform:uppercase;margin-right:4px}
+.vertical-chip{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--navy);background:#fff;border:1px solid var(--g200);padding:5px 12px;border-radius:100px}
+.vertical-chip.soon{color:var(--g400);background:transparent;border-style:dashed}
+.cta-section{background:var(--navy);padding:120px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-300px;left:50%;transform:translateX(-50%);width:800px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,194,224,.07) 0%,transparent 70%);pointer-events:none}
+.cta-h2{font-family:'Inter',sans-serif;font-size:clamp(32px,4.5vw,56px);letter-spacing:-.04em;line-height:1;font-weight:900;color:#fff;margin-bottom:20px}
+.cta-h2 .accent{color:var(--cyan)}
+.cta-sub{font-size:16px;color:rgba(255,255,255,.5);margin-bottom:44px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary-inv{background:var(--cyan);color:#fff;padding:15px 32px;border-radius:9px;font-family:'Inter',sans-serif;font-weight:700;font-size:16px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(0,194,224,.3);transition:.2s;border:none;cursor:pointer}
+.btn-primary-inv:hover{background:var(--cyan2);transform:translateY(-2px)}
+.btn-ghost-inv{color:rgba(255,255,255,.5);font-size:15px;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.12);padding:14px 24px;border-radius:9px;transition:.2s}
+.btn-ghost-inv:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding:36px 48px;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Inter',sans-serif;font-size:18px;font-weight:900;letter-spacing:-.03em;color:var(--cyan)}
+.footer-logo span{color:#fff}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase}
+.fade-up{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.benefits-cols,.ingesta-grid{grid-template-columns:1fr}.checklist-card,.objeciones-card,.proof-card{grid-template-columns:1fr;gap:24px}.pricing-features{grid-template-columns:1fr}.steps-wrap{grid-template-columns:1fr 1fr}.app-sidebar{width:140px}.app-kpi-row{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){nav{padding:0 20px}.nav-links a:not(.nav-cta){display:none}.hero{padding:100px 20px 60px}.hero-h1{font-size:38px}.hero-sub{font-size:18px}.hero-stats{gap:24px}.flow-section{padding:60px 20px}section{padding:64px 20px}.cta-section{padding:80px 20px}footer{flex-direction:column;gap:16px;text-align:center;padding:32px 20px}.pricing-hero{padding:32px 24px}.proof-card{padding:28px 24px}.app-body{flex-direction:column;min-height:auto}.app-sidebar{width:100%;flex-direction:row;overflow-x:auto;gap:6px}.app-nav-item{white-space:nowrap}.app-brand{margin-bottom:0;margin-right:10px}}
+@media(max-width:600px){.steps-wrap{grid-template-columns:1fr}.hero-h1{font-size:32px}.hero-sub{font-size:16px}.hero-stats{flex-wrap:wrap;gap:20px}.checklist-card,.objeciones-card{padding:24px}.app-kpi-row{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="#">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="17" cy="13" r="2.8" fill="#00C2E0"/><path d="M17 7.5 A5.5 5.5 0 0 0 17 18.5" stroke="#00C2E0" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M17 3.5 A9.5 9.5 0 0 0 17 22.5" stroke="#00C2E0" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".5"/><path d="M17 0.5 A12.5 12.5 0 0 0 17 25.5" stroke="#00C2E0" stroke-width="0.8" stroke-linecap="round" fill="none" opacity=".22"/></svg>
+    <div class="logo-mark">auris<span>IQ</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="#como">Cómo funciona</a>
+    <a href="#app">La app</a>
+    <a href="#precios">Planes</a>
+    <button class="nav-cta" onclick="openDemo()">Agendar demo</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="pill pill-cyan"><span class="pill-emoji">🎙️</span> Inteligencia para ventas presenciales en español</div>
+  <h1 class="hero-h1">Analiza lo que pasa<br>cuando tu equipo vende<br><span class="accent">cara a cara.</span></h1>
+  <p class="hero-sub">aurisIQ revisa llamadas, visitas y reuniones comerciales en español. Te dice qué faltó, qué sí se cubrió y cuál es el siguiente paso.</p>
+  <p class="hero-desc">Hecho para equipos comerciales en LATAM que venden por llamada y presencial. Sin escuchar conversaciones una por una. Sin depender de memoria. Sin cambiar a tu equipo.</p>
+  <div class="hero-actions">
+    <a href="#" onclick="openDemo();return false;" class="btn-primary"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 7L7 13M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Agendar demo de 20 min</a>
+    <a href="#como" class="btn-ghost">Ver cómo funciona →</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hs-num"><em>1</em></div><div class="hs-label">score claro por conversación</div></div>
+    <div><div class="hs-num"><em>1</em></div><div class="hs-label">brecha principal por corregir</div></div>
+    <div><div class="hs-num"><em>1</em></div><div class="hs-label">siguiente paso sugerido</div></div>
+  </div>
+</div>
+
+<div class="flow-section">
+  <div class="flow-inner">
+    <p class="flow-eyebrow">// ejemplo de captación inmobiliaria</p>
+    <h2 class="flow-title">Subes la conversación.<br>aurisIQ la analiza.<br><span>Sabes qué corregir.</span></h2>
+    <p class="flow-subtitle">Después de cada conversación ves score, brecha principal y siguiente paso. Aquí el ejemplo es una captación inmobiliaria en CDMX.</p>
+    <div class="flow-steps">
+      <div class="hf-step">
+        <div class="hf-step-header"><span class="hf-step-label"><span class="hf-step-num">1</span>Grabas o pegas la conversación</span><span class="hf-status" style="color:var(--cyan)"><span class="hf-dot" style="background:var(--cyan);animation:pulse 1.5s infinite"></span>escribiendo</span></div>
+        <div class="hf-step-body">
+          <div class="tl-row"><span class="tl-speaker">Captadora:</span><span class="tl-text">Le llamamos porque vimos su casa publicada. ¿Cuenta con 5 minutos?</span></div>
+          <div class="tl-row"><span class="tl-speaker">Propietario:</span><span class="tl-text">Sí, dígame...</span></div>
+          <div class="tl-row"><span class="tl-speaker">Captadora:</span><span class="tl-text" id="tl-typing"></span><span class="tl-cursor"></span></div>
+        </div>
+      </div>
+      <div class="hf-arrow"><span class="hf-arrow-icon">aurisIQ analiza</span></div>
+      <div class="hf-step">
+        <div class="hf-step-header"><span class="hf-step-label"><span class="hf-step-num">2</span>aurisIQ evalúa la conversación con tu scorecard</span><span class="hf-status" style="color:var(--cyan)"><span class="hf-dot" style="background:var(--cyan);animation:pulse 1.2s infinite"></span>procesando</span></div>
+        <div class="hf-step-body">
+          <div class="ai-proc-row"><div class="ai-proc-icon">🔍</div><span class="ai-proc-text">Apertura y marco</span><div class="ai-proc-bar-wrap"><div class="ai-proc-bar" style="animation-delay:0s"></div></div><span class="ai-proc-tag">Scorecard</span></div>
+          <div class="ai-proc-row"><div class="ai-proc-icon">💬</div><span class="ai-proc-text">Calificación del prospecto</span><div class="ai-proc-bar-wrap"><div class="ai-proc-bar" style="animation-delay:.4s"></div></div></div>
+          <div class="ai-proc-row"><div class="ai-proc-icon">⚡</div><span class="ai-proc-text">Objeciones y avance</span><div class="ai-proc-bar-wrap"><div class="ai-proc-bar" style="animation-delay:.8s"></div></div></div>
+          <div class="ai-proc-row"><div class="ai-proc-icon">✅</div><span class="ai-proc-text">Cierre y siguiente paso</span><div class="ai-proc-bar-wrap"><div class="ai-proc-bar" style="animation-delay:1.2s"></div></div></div>
+        </div>
+      </div>
+      <div class="hf-arrow"><span class="hf-arrow-icon">resultado listo</span></div>
+      <div class="hf-step">
+        <div class="hf-step-header"><span class="hf-step-label"><span class="hf-step-num">3</span>Score, brecha principal y siguiente paso</span><span class="hf-status" style="color:var(--green)"><span class="hf-dot" style="background:var(--green)"></span>listo</span></div>
+        <div class="hf-step-body">
+          <div class="result-score-row">
+            <div class="mini-ring"><svg width="52" height="52" viewBox="0 0 52 52"><circle class="mini-ring-bg" cx="26" cy="26" r="23"/><circle class="mini-ring-fill" cx="26" cy="26" r="23"/></svg><div class="mini-score-num">72</div></div>
+            <div><div class="rmt-name">Sra. Ramírez</div><div class="rmt-tag">CALIFICADA · 1 brecha crítica</div><div class="rmt-empresa">Captación Coyoacán · Hoy 10:34am</div></div>
+          </div>
+          <div class="rc-row"><span class="rc-name">Apertura y marco</span><div class="rc-bar"><div class="rc-fill" style="width:87%"></div></div><span class="rc-pts">13/15</span></div>
+          <div class="rc-row"><span class="rc-name">Calificación Infonavit</span><div class="rc-bar"><div class="rc-fill" style="width:68%"></div></div><span class="rc-pts">17/25</span></div>
+          <div class="rc-row"><span class="rc-name">Avance a visita</span><div class="rc-bar"><div class="rc-fill" style="width:28%;background:var(--red)"></div></div><span class="rc-pts" style="color:var(--red)">7/25</span></div>
+          <div class="result-next"><div class="rn-label">siguiente paso</div><div class="rn-text">Terminó sin agendar la visita. Llamar hoy antes de las 6pm: <em>"¿Qué día de esta semana nos abre la casa para verla?"</em></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item"><strong>Inmobiliario</strong><span class="ticker-sep">·</span>Captación y visita a la propiedad</span>
+    <span class="ticker-item"><strong>Crédito</strong><span class="ticker-sep">·</span>Diagnóstico de llamadas</span>
+    <span class="ticker-item"><em>Automotriz</em><span class="ticker-sep">·</span>Próximamente</span>
+    <span class="ticker-item"><em>Dental</em><span class="ticker-sep">·</span>Próximamente</span>
+    <span class="ticker-item"><em>Seguros</em><span class="ticker-sep">·</span>Próximamente</span>
+    <span class="ticker-item"><strong>Inmobiliario</strong><span class="ticker-sep">·</span>Captación y visita a la propiedad</span>
+    <span class="ticker-item"><strong>Crédito</strong><span class="ticker-sep">·</span>Diagnóstico de llamadas</span>
+    <span class="ticker-item"><em>Automotriz</em><span class="ticker-sep">·</span>Próximamente</span>
+    <span class="ticker-item"><em>Dental</em><span class="ticker-sep">·</span>Próximamente</span>
+    <span class="ticker-item"><em>Seguros</em><span class="ticker-sep">·</span>Próximamente</span>
+  </div>
+</div>
+
+<!-- INGESTA - bloque nuevo grabación -->
+<section class="ingesta-section fade-up">
+  <div class="ingesta-inner">
+    <div class="section-label">Cómo entra la conversación</div>
+    <h2 class="section-h2" style="margin-bottom:12px">Graba desde la app,<br>o <span class="accent">sube lo que tengas.</span></h2>
+    <p class="section-desc">Tres formas de entrada para que ningún equipo se quede fuera. Funciona donde ya estés trabajando hoy.</p>
+    <div class="ingesta-grid">
+      <div class="ingesta-card primary">
+        <span class="ing-badge-primary">Recomendado</span>
+        <div class="ing-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="8" y="2" width="6" height="12" rx="3" stroke="#00C2E0" stroke-width="1.8"/><path d="M4 10v1a7 7 0 0 0 14 0v-1" stroke="#00C2E0" stroke-width="1.8" stroke-linecap="round"/><path d="M11 18v3" stroke="#00C2E0" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="ing-label">01 · Desde la app</div>
+        <div class="ing-title">Graba la llamada o la visita</div>
+        <div class="ing-desc">Con el teléfono sobre la mesa durante la llamada, o contigo en la visita presencial. Calidad de audio mucho mejor que celular en el bolsillo.</div>
+      </div>
+      <div class="ingesta-card">
+        <div class="ing-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3v12m0 0l-4-4m4 4l4-4" stroke="#00C2E0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 17h16" stroke="#00C2E0" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="ing-label">02 · Audio o transcripción</div>
+        <div class="ing-title">Sube un archivo</div>
+        <div class="ing-desc">Audio de WhatsApp, grabación de tu celular, transcripción exportada o un archivo de texto. aurisIQ lo procesa igual.</div>
+      </div>
+      <div class="ingesta-card">
+        <div class="ing-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="2" stroke="#00C2E0" stroke-width="1.8"/><path d="M7 8h8M7 12h5M7 16h6" stroke="#00C2E0" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="ing-label">03 · Pega texto</div>
+        <div class="ing-title">Copia y pega la transcripción</div>
+        <div class="ing-desc">Si ya tienes la conversación en texto, la pegas directo. Útil cuando vienes de otra herramienta o tienes notas de la llamada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fade-up" style="background:#fff;padding:96px 24px">
+  <div class="section-inner">
+    <div class="benefits-intro">
+      <div class="section-label" style="justify-content:center">Por qué funciona</div>
+      <p class="benefits-big">Tus conversaciones ya traen<br>la información que hoy<br>se te está <span class="accent">yendo.</span></p>
+      <p class="benefits-sub">aurisIQ convierte llamadas, visitas y reuniones en algo accionable: score, brechas, siguiente paso y patrones del equipo. Sin revisar una por una.</p>
+    </div>
+
+    <div class="proof-card">
+      <div>
+        <div class="proof-left-label">Activo hoy en operación</div>
+        <h3 class="proof-left-h">Equipos inmobiliarios en CDMX y equipos de crédito en el norte de México ya lo usan en su día a día.</h3>
+      </div>
+      <div>
+        <div class="proof-right-label">Lo que reportan los equipos hoy</div>
+        <div class="proof-list">
+          <div class="proof-item"><div class="proof-item-icon">✓</div><div class="proof-item-text"><strong>Menos tiempo revisando llamadas una por una.</strong> El gerente ya no se sienta a escuchar audios: llega directo al diagnóstico.</div></div>
+          <div class="proof-item"><div class="proof-item-icon">✓</div><div class="proof-item-text"><strong>Más consistencia entre vendedores nuevos y senior.</strong> Todos trabajan sobre el mismo estándar, no sobre el criterio de cada quien.</div></div>
+          <div class="proof-item"><div class="proof-item-icon">✓</div><div class="proof-item-text"><strong>Visibilidad clara de en qué etapa se caen los avances.</strong> Cuando una conversación no cierra, se sabe por qué.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="benefits-cols">
+      <div class="benefit-col">
+        <div class="benefit-col-header"><div><div class="benefit-col-title">Para el vendedor</div><div class="benefit-col-sub">sabe qué corregir después de cada conversación</div></div></div>
+        <div class="benefit-list">
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Un score claro de cómo salió esa conversación.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>La parte exacta donde se cayó el avance.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>El siguiente paso sugerido para ese prospecto.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Ejemplos de cómo sí lo está haciendo quien mejor convierte.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Menos intuición. Más claridad para la siguiente conversación.</strong></span></div>
+        </div>
+      </div>
+      <div class="benefit-col">
+        <div class="benefit-col-header"><div><div class="benefit-col-title">Para el gerente</div><div class="benefit-col-sub">corrige al equipo sin escuchar horas de audio</div></div></div>
+        <div class="benefit-list">
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Ve en qué etapa se están cayendo las conversaciones esta semana.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Detecta quién sí está llevando a visita y quién no.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Encuentra errores repetidos sin revisar una por una.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Convierte la forma de vender de su mejor persona en estándar del equipo.</strong></span></div>
+          <div class="benefit-item"><span class="benefit-check">✓</span><span class="benefit-text"><strong>Corrige esta semana, no al cierre del mes.</strong></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="objeciones-card">
+      <div>
+        <div class="objeciones-tag">💡 Lo que hoy no estás viendo</div>
+        <h3 class="objeciones-h">No sabes por qué<br>unas conversaciones avanzan<br><span>y otras se frenan.</span></h3>
+        <p class="objeciones-desc">Muchas veces el problema no está solo en el lead. Está en la conversación. aurisIQ agrupa objeciones, detecta patrones y te muestra en qué parte se cae el avance para corregir speech, seguimiento o incluso segmentación.</p>
+      </div>
+      <div>
+        <div class="obj-demo">
+          <div class="obj-demo-header">// objeciones esta semana · 47 conversaciones</div>
+          <div class="obj-bar-row"><div class="obj-bar-label"><span class="obj-bar-text">"No tengo tiempo ahora"</span><span class="obj-bar-pct">38%</span></div><div class="obj-bar-track"><div class="obj-bar-fill" style="width:38%"></div></div></div>
+          <div class="obj-bar-row"><div class="obj-bar-label"><span class="obj-bar-text">"Está muy caro"</span><span class="obj-bar-pct">27%</span></div><div class="obj-bar-track"><div class="obj-bar-fill" style="width:27%"></div></div></div>
+          <div class="obj-bar-row"><div class="obj-bar-label"><span class="obj-bar-text">"Ya tengo uno similar"</span><span class="obj-bar-pct">19%</span></div><div class="obj-bar-track"><div class="obj-bar-fill" style="width:19%;opacity:.7"></div></div></div>
+          <div class="obj-bar-row"><div class="obj-bar-label"><span class="obj-bar-text">"Necesito consultarlo"</span><span class="obj-bar-pct">11%</span></div><div class="obj-bar-track"><div class="obj-bar-fill" style="width:11%;opacity:.5"></div></div></div>
+          <div class="obj-insight"><div class="obj-insight-label">→ Insight del análisis</div><div class="obj-insight-text">Si esta objeción se repite, revisa si el problema está en el tipo de prospecto que entra o en cómo se está abriendo la conversación.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist-card">
+      <div>
+        <div class="soon-tag" style="background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.35);color:#10B981">● Disponible</div>
+        <h3 class="checklist-h">Checklist en vivo<br><span>durante la conversación.</span></h3>
+        <p class="checklist-desc">Mientras estás en la llamada o la visita, aurisIQ detecta qué sí cubriste y qué faltó. Sin esperar al análisis final. Sin tener que recordar qué preguntaste.</p>
+      </div>
+      <div>
+        <p class="checklist-label">Checklist en tiempo real</p>
+        <div class="checklist-demo">
+          <div class="checklist-demo-header">Llamada en curso · 4:23</div>
+          <div class="checklist-row done"><div class="cr-check done">✓</div><span class="cr-label done">Presentación y apertura</span><span class="cr-badge auto">Auto</span></div>
+          <div class="checklist-row done"><div class="cr-check done">✓</div><span class="cr-label done">Identificó la necesidad principal</span><span class="cr-badge auto">Auto</span></div>
+          <div class="checklist-row detecting"><div class="cr-check detecting"></div><span class="cr-label" style="color:var(--cyan)">Manejo de objeción de precio...</span><span class="cr-badge live">Detectando</span></div>
+          <div class="checklist-row pending"><div class="cr-check pending"></div><span class="cr-label">Intento de cierre</span></div>
+          <div class="checklist-row pending"><div class="cr-check pending"></div><span class="cr-label">Agendó siguiente paso</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS por rol -->
+<section class="screenshots-section fade-up" id="app">
+  <div class="screenshots-inner">
+    <div class="screenshots-head">
+      <div class="section-label" style="justify-content:center">La app por dentro</div>
+      <h2 class="section-h2">Así se ve cuando<br><span class="accent">tu equipo ya tiene datos.</span></h2>
+      <p class="section-desc" style="margin:0 auto">Tres vistas, cada una con la información que esa persona necesita para tomar decisiones. Sin aprender nada nuevo.</p>
+    </div>
+
+    <div class="role-tabs">
+      <button class="role-tab active" data-role="cap" onclick="switchRole('cap')">Captadora / Vendedor</button>
+      <button class="role-tab" data-role="ger" onclick="switchRole('ger')">Gerente</button>
+      <button class="role-tab" data-role="dir" onclick="switchRole('dir')">Dirección</button>
+    </div>
+
+    <!-- CAPTADORA -->
+    <div class="screenshot-frame" id="view-cap">
+      <div class="browser-bar">
+        <div class="browser-dots"><div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div></div>
+        <div class="browser-url">app.aurisiq.io</div>
+      </div>
+      <div class="app-body">
+        <div class="app-sidebar">
+          <div class="app-brand">auris<span>IQ</span></div>
+          <div class="app-nav-item cap-active">🔥 Mi día</div>
+          <div class="app-nav-item">📞 Nueva llamada</div>
+          <div class="app-nav-item">📊 Mis análisis</div>
+          <div class="app-nav-item">📈 Mi semana</div>
+          <div class="app-nav-item">🎯 Mi Speech</div>
+        </div>
+        <div class="app-content">
+          <div class="app-greet">Hola, Sara 👋</div>
+          <div class="app-date">Jueves, 3 de abril · 3 días de racha 🔥</div>
+          <div class="app-kpi-row">
+            <div class="app-kpi"><div class="app-kpi-label">Llamadas</div><div class="app-kpi-val">12</div></div>
+            <div class="app-kpi"><div class="app-kpi-label">Score prom.</div><div class="app-kpi-val">74</div></div>
+            <div class="app-kpi"><div class="app-kpi-label">Calificados</div><div class="app-kpi-val">8/12</div></div>
+            <div class="app-kpi dark"><div class="app-kpi-label">Ranking</div><div class="app-kpi-val">#2 de 5</div></div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-label">🎯 Tu foco esta semana</div>
+            <div class="focus-card-text">Intento de cierre: estás cerrando el 58% de llamadas calificadas. La meta es 75%.</div>
+          </div>
+          <div class="app-section-label">Llamadas de hoy</div>
+          <div class="call-row"><div class="call-score good">82</div><div class="call-info"><div class="call-name">Martínez · Col. Del Valle · Casa</div><div class="call-time">Hoy 10:22am</div></div><div class="call-badge ok">Lead calificado</div></div>
+          <div class="call-row"><div class="call-score mid">61</div><div class="call-info"><div class="call-name">Ramírez · Col. Narvarte</div><div class="call-time">Hoy 09:05am</div></div><div class="call-badge warn">Fuera de zona</div></div>
+          <button class="record-cta">+ Nueva llamada</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GERENTE -->
+    <div class="screenshot-frame" id="view-ger" style="display:none">
+      <div class="browser-bar">
+        <div class="browser-dots"><div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div></div>
+        <div class="browser-url">app.aurisiq.io</div>
+      </div>
+      <div class="app-body">
+        <div class="app-sidebar">
+          <div class="app-brand">auris<span>IQ</span></div>
+          <div class="app-nav-item active">👥 Equipo</div>
+          <div class="app-nav-item">📊 Expedientes</div>
+          <div class="app-nav-item">🎯 Biblioteca</div>
+          <div class="app-nav-item">📈 Reportes</div>
+          <div class="app-nav-item">⚙️ Configuración</div>
+        </div>
+        <div class="app-content">
+          <div class="app-greet">Dashboard del equipo</div>
+          <div class="app-date">Semana del 31 mar — 6 abr · CDMX</div>
+          <div class="app-kpi-row">
+            <div class="app-kpi"><div class="app-kpi-label">Análisis</div><div class="app-kpi-val">87</div></div>
+            <div class="app-kpi"><div class="app-kpi-label">Score equipo</div><div class="app-kpi-val">71</div></div>
+            <div class="app-kpi"><div class="app-kpi-label">Avance a visita</div><div class="app-kpi-val">43%</div></div>
+            <div class="app-kpi dark"><div class="app-kpi-label">Mejor score</div><div class="app-kpi-val">Laura · 84</div></div>
+          </div>
+          <div class="app-section-label">Semáforo del equipo</div>
+          <div class="team-semaforo">
+            <div class="team-row"><div class="team-dot green"></div><div><div class="team-name">Laura G.</div><div class="team-meta">23 análisis · score 84</div></div><div style="flex:1"></div><div class="team-delta up">↑ 6</div></div>
+            <div class="team-row"><div class="team-dot yellow"></div><div><div class="team-name">Sara M.</div><div class="team-meta">12 análisis · score 74</div></div><div style="flex:1"></div><div class="team-delta up">↑ 2</div></div>
+            <div class="team-row"><div class="team-dot red"></div><div><div class="team-name">Karla S.</div><div class="team-meta">8 análisis · score 58</div></div><div style="flex:1"></div><div class="team-delta down">↓ 4</div></div>
+          </div>
+          <div class="obj-block">
+            <div class="obj-title">Top 3 objeciones de la semana</div>
+            <div class="obj-item"><span>"Está muy caro"</span><span>34%</span></div>
+            <div class="obj-item"><span>"Lo voy a pensar"</span><span>26%</span></div>
+            <div class="obj-item"><span>"Ya tengo corredor"</span><span>18%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIRECCIÓN -->
+    <div class="screenshot-frame" id="view-dir" style="display:none">
+      <div class="browser-bar">
+        <div class="browser-dots"><div class="browser-dot r"></div><div class="browser-dot y"></div><div class="browser-dot g"></div></div>
+        <div class="browser-url">app.aurisiq.io</div>
+      </div>
+      <div class="app-body">
+        <div class="app-sidebar">
+          <div class="app-brand">auris<span>IQ</span></div>
+          <div class="app-nav-item active">📊 Dashboard</div>
+          <div class="app-nav-item">💰 ROI</div>
+          <div class="app-nav-item">📈 Reportes</div>
+          <div class="app-nav-item">⚙️ Cuenta</div>
+        </div>
+        <div class="app-content">
+          <div class="app-greet">Cómo va el negocio</div>
+          <div class="app-date">Abril 2026 · vs marzo 2026</div>
+          <div class="funnel-card">
+            <div class="funnel-title">Embudo completo · mes actual</div>
+            <div class="funnel-row"><span class="funnel-stage">Llamadas de captación</span><span class="funnel-pct">342</span></div>
+            <div class="funnel-row"><span class="funnel-stage">Leads calificados</span><span class="funnel-pct">218 · 64%</span></div>
+            <div class="funnel-row"><span class="funnel-stage">Visitas agendadas</span><span class="funnel-pct">94 · 43%</span></div>
+            <div class="funnel-row"><span class="funnel-stage">Captaciones firmadas</span><span class="funnel-pct">31 · 33%</span></div>
+          </div>
+          <div class="roi-card">
+            <div class="roi-label">ROI de aurisIQ · trimestre</div>
+            <div class="roi-num">+8 captaciones</div>
+            <div class="roi-sub">vs línea base antes de usar aurisIQ</div>
+          </div>
+          <div style="margin-top:14px">
+            <div class="app-section-label">Iniciativas del trimestre</div>
+            <div class="obj-item"><span>Subir avance a visita a 50%</span><span style="color:var(--green);font-weight:600">43% · on track</span></div>
+            <div class="obj-item"><span>Reducir objeción de precio</span><span style="color:var(--yellow);font-weight:600">34% · revisar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-note">// los datos mostrados son de ejemplo. tu app mostrará los de tu equipo.</div>
+  </div>
+</section>
+
+<section class="fade-up" id="como" style="background:#fff">
+  <div class="section-inner">
+    <div class="section-label">Empieza hoy</div>
+    <h2 class="section-h2">Lo ves funcionar<br><span class="accent">desde la demo.</span></h2>
+    <p class="how-subtitle">Te mostramos aurisIQ con una conversación real y te enseñamos qué sale del análisis.</p>
+    <div class="steps-wrap">
+      <div class="step"><div class="step-num">01</div><div class="step-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="8" y="2" width="6" height="12" rx="3" stroke="#00C2E0" stroke-width="1.5"/><path d="M4 10v1a7 7 0 0 0 14 0v-1" stroke="#00C2E0" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="step-title">Graba o sube una conversación</div><div class="step-desc">Desde la app, o sube audio, transcripción o texto. Llamada, visita o reunión.</div><div class="step-connector"></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="2" stroke="#00C2E0" stroke-width="1.5"/><path d="M7 8h8M7 12h5M7 16h6" stroke="#00C2E0" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="step-title">aurisIQ la ordena y la evalúa</div><div class="step-desc">La procesa con el scorecard que corresponde a tu tipo de venta.</div><div class="step-connector"></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#00C2E0" stroke-width="1.5"/><path d="M8 11l2 2 4-4" stroke="#00C2E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="step-title">Recibes score y brechas</div><div class="step-desc">Ves qué sí se cubrió, qué faltó y dónde se frenó el avance.</div><div class="step-connector"></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4h14v10H4z" stroke="#00C2E0" stroke-width="1.5"/><path d="M8 18h6M11 14v4" stroke="#00C2E0" stroke-width="1.5" stroke-linecap="round"/><path d="M7 8l2.5 2.5L14 7" stroke="#00C2E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="step-title">Tu equipo sabe qué corregir</div><div class="step-desc">El vendedor sale con claridad. El gerente sale con seguimiento concreto.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing fade-up" id="precios">
+  <div class="pricing-inner">
+    <div class="section-label" style="justify-content:center">Planes</div>
+    <h2 class="section-h2">Armado para<br><span class="accent">tu industria.</span></h2>
+    <p class="section-desc" style="margin:0 auto">No vendemos aurisIQ con una tabla genérica. Se define según tu equipo, el tipo de conversación que analizas y el scorecard que necesitas.</p>
+    <div class="pricing-hero">
+      <div class="pill pill-white pricing-hero-pill"><span class="pill-emoji">🎯</span> Piloto de entrada</div>
+      <h3 class="pricing-hero-h">Piloto gratuito<br>de <span class="accent">60 días.</span></h3>
+      <p class="pricing-hero-sub">Hoy abrimos pilotos en equipos seleccionados. Trabajamos con conversaciones reales, configuramos el scorecard y validamos si aurisIQ se vuelve parte del día a día del equipo.</p>
+      <div class="pricing-features">
+        <div class="pf-col"><div class="pf-col-label">01 · Por equipo</div><div class="pf-col-title">No cobramos por asiento</div><div class="pf-col-desc">El plan se define por equipo y operación, no por licencias individuales.</div></div>
+        <div class="pf-col"><div class="pf-col-label">02 · Por industria</div><div class="pf-col-title">Scorecard según tu venta</div><div class="pf-col-desc">No usamos un template genérico. Cada vertical entra con criterios distintos.</div></div>
+        <div class="pf-col"><div class="pf-col-label">03 · Entrada simple</div><div class="pf-col-title">Ves el encaje antes de escalar</div><div class="pf-col-desc">La demo y el piloto sirven para validar si aurisIQ realmente se integra al día a día del equipo.</div></div>
+      </div>
+      <button class="pricing-hero-cta" onclick="openDemo()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 7L7 13M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Agendar demo de 20 min</button>
+      <div class="pricing-note">Demo de 20 min · Piloto de 60 días · Sin compromiso</div>
+    </div>
+    <div class="verticales-line">
+      <span class="verticales-line-label">Activo hoy en</span>
+      <span class="vertical-chip">Inmobiliario</span>
+      <span class="vertical-chip">Crédito</span>
+      <span class="vertical-chip soon">Automotriz · próximamente</span>
+      <span class="vertical-chip soon">Dental · próximamente</span>
+      <span class="vertical-chip soon">Seguros · próximamente</span>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="pill pill-white" style="margin:0 auto 24px"><span class="pill-emoji">⏱️</span> 20 minutos · Sin compromiso</div>
+  <h2 class="cta-h2">Si hoy no sabes por qué<br>unas conversaciones avanzan<br>y otras no,<br><span class="accent">te lo mostramos en la demo.</span></h2>
+  <p class="cta-sub">Te enseñamos aurisIQ con un caso real y te explicamos qué ve el vendedor, qué ve el gerente y cómo entraría tu equipo.</p>
+  <div class="cta-actions">
+    <button onclick="openDemo()" class="btn-primary-inv"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13 7L7 13M1 7h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Agendar demo de 20 min</button>
+    <a href="#como" class="btn-ghost-inv">Ver cómo funciona →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">auris<span>IQ</span></div>
+  <div class="footer-copy">© 2026 aurisIQ · Inteligencia para ventas presenciales en español</div>
+</footer>
+
+<div id="modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,11,24,.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;border-radius:16px;padding:48px 40px;max-width:520px;width:100%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.2)">
+    <button onclick="closeModal()" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;color:#9CA3AF;font-size:20px;line-height:1">✕</button>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="16" cy="12" r="2.5" fill="#00C2E0"/><path d="M16 7 A5 5 0 0 0 16 17" stroke="#00C2E0" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M16 3 A9 9 0 0 0 16 21" stroke="#00C2E0" stroke-width="1.1" stroke-linecap="round" fill="none" opacity=".45"/></svg>
+      <span style="font-family:'Inter',sans-serif;font-size:18px;font-weight:900;letter-spacing:-.03em;color:#00C2E0">auris<span style="color:#060B18">IQ</span></span>
+    </div>
+    <h2 style="font-family:'Inter',sans-serif;font-size:26px;font-weight:900;letter-spacing:-.03em;color:#060B18;margin-bottom:10px;line-height:1.1">Agenda tu demo de 20 min</h2>
+    <p style="font-size:15px;color:#4B5563;line-height:1.6;margin-bottom:28px">Te mostramos aurisIQ con una conversación real y te explicamos si hace sentido para tu equipo hoy.</p>
+    <a href="https://cal.com/anwar/aurisiq-demo" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#00C2E0;color:#fff;text-decoration:none;padding:14px;border-radius:8px;font-size:15px;font-weight:700;font-family:'Inter',sans-serif;margin-bottom:14px">Ver horarios disponibles →</a>
+    <div style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:#9CA3AF;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px">— o escríbenos directo —</div>
+    <a href="https://wa.me/5218110000000?text=Hola,%20me%20interesa%20agendar%20una%20demo%20de%20aurisIQ" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;border:1px solid #E5E7EB;color:#4B5563;text-decoration:none;padding:12px;border-radius:8px;font-size:14px;font-weight:600;font-family:'Inter',sans-serif">WhatsApp directo</a>
+    <p style="font-size:12px;color:#9CA3AF;text-align:center;margin-top:16px">20 minutos · Sin compromiso · Sin tarjeta</p>
+  </div>
+</div>
+
+<script>
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => nav.style.boxShadow = scrollY > 20 ? '0 2px 20px rgba(0,0,0,.07)' : '');
+const phrases = ["Le llamamos porque vimos su casa publicada...", "¿Qué día de esta semana nos abre la casa para verla?"];
+let pi = 0, ci = 0, el = document.getElementById('tl-typing');
+function type() {
+  if (ci < phrases[pi].length) { el.textContent += phrases[pi][ci++]; setTimeout(type, 38); }
+  else { setTimeout(() => { el.textContent = ''; ci = 0; pi = (pi + 1) % phrases.length; setTimeout(type, 400); }, 2200); }
+}
+type();
+function openDemo() { document.getElementById('modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = ''; }
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+function switchRole(role){
+  document.querySelectorAll('.role-tab').forEach(t=>t.classList.toggle('active',t.dataset.role===role));
+  ['cap','ger','dir'].forEach(r=>{document.getElementById('view-'+r).style.display=(r===role?'block':'none')});
+}
+</script>
+</body>
+</html>
